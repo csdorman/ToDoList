@@ -2,22 +2,22 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const todos = [
+    { id:1, text:'Practice guitar', done:false },
+    { id:2, text:'Read book', done: false },
+    { id:3, text:'Cook dinner', done: false }
+  ]
+  const todonts = [
+    { id:1, text:'Check social media', done:false },
+    { id:2, text:'Stay up too late', done:false },
+    { id:3, text:'Eat all the carbs', done:false }
+  ]
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>ToDo List</h1>
+        <ToDoList todos={todos}/>
+      <h1>ToDon't List</h1>
+        <ToDontList todonts={todonts} />
     </div>
   );
 }
