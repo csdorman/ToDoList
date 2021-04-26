@@ -16,10 +16,51 @@ function App() {
     <div className="App">
       <h1>ToDo List</h1>
         <ToDoList todos={todos}/>
+        <AddToDo />
       <h1>ToDon't List</h1>
         <ToDontList todonts={todonts} />
+        <AddToDont />
     </div>
   );
+}
+
+function AddToDo() {
+  return(
+    <form>
+      <input placeholder="Add your todos here"></input>
+      <button type="submit">Add a ToDo</button>
+    </form>
+  )
+}
+
+function ToDoList(props) {
+  return (
+    <ul>
+      {props.todos.map(todo => (
+        <li key={todo.id}>Todo: {todo.text}</li>
+      ))}
+    </ul>
+  )
+}
+
+function AddToDont() {
+  return(
+    <form>
+      <input placeholder="Add your unproductive tasks here"></input>
+      <button type="submit">Add something to AVOID</button>
+    </form>
+  )
+}
+
+//! With destructuring to reduce typing "props" for properties
+function ToDontList( {todonts} ) {
+  return (
+    <ul>
+      {todonts.map(todont => (
+        <li key={todont.id}>ToDon't: {todont.text}</li>
+      ))}
+    </ul>
+  )
 }
 
 export default App;
