@@ -14,20 +14,38 @@ function App() {
   ]
   return (
     <div className="App">
-      <h1>ToDo List</h1>
-        <ToDoList todos={todos}/>
-        <AddToDo />
-      <h1>ToDon't List</h1>
-        <ToDontList todonts={todonts} />
-        <AddToDont />
+      <div className="Todo-module">
+        <h1 className="Todo-heading">ToDo List</h1>
+          <ToDoList  todos={todos}/>
+          <AddToDo />
+      </div>
+      <div className="Todont-module">
+        <h1 className="Todont-heading">ToDon't List</h1>
+          <ToDontList  todonts={todonts} />
+          <AddToDont />
+      </div>
     </div>
   );
 }
 
 function AddToDo() {
+  function handleAddTodo(event) {
+    //by default, the React refreshes page w/onSubmit - this prevents that
+    event.preventDefault()
+    //see all the elements submitted by onSubmit - console.log(event.target.elements)
+    //get the text entered into <input> - console.log(event.target.elements.newTodo.value)
+    const todoText = event.target.elements.newTodo.value
+    const todo = {
+      id: 4,
+      text: todoText,
+      done: false 
+    }
+    console.log(todo)
+
+  }
   return(
-    <form>
-      <input placeholder="Add your todos here"></input>
+    <form onSubmit={handleAddTodo}>
+      <input name="newTodo" placeholder="Add your todos here"></input>
       <button type="submit">Add a ToDo</button>
     </form>
   )
@@ -35,7 +53,7 @@ function AddToDo() {
 
 function ToDoList(props) {
   return (
-    <ul>
+    <ul className="TodoList">
       {props.todos.map(todo => (
         <li key={todo.id}>Todo: {todo.text}</li>
       ))}
@@ -44,8 +62,9 @@ function ToDoList(props) {
 }
 
 function AddToDont() {
+
   return(
-    <form>
+    <form >
       <input placeholder="Add your unproductive tasks here"></input>
       <button type="submit">Add something to AVOID</button>
     </form>
@@ -55,7 +74,7 @@ function AddToDont() {
 //! With destructuring to reduce typing "props" for properties
 function ToDontList( {todonts} ) {
   return (
-    <ul>
+    <ul className="TodontList">
       {todonts.map(todont => (
         <li key={todont.id}>ToDon't: {todont.text}</li>
       ))}

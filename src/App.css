@@ -1,9 +1,40 @@
 .App {
   text-align: left;
   padding: 2vh;
-  background-color: aqua;
   border:2px brown;
+  display: flex;
 }
+
+.Todo-module {
+  flex: 1;
+}
+
+.Todo-heading {
+  background: yellow;
+  margin-bottom: 0px;
+  text-align: center;
+}
+
+.TodoList {
+  background-color: yellowgreen;
+  margin-top: 0px;
+}
+
+.Todont-module {
+  flex: 1;
+}
+
+.Todont-heading {
+  background-color: tomato;
+  margin-bottom: 0px;
+  text-align: center;
+}
+
+.TodontList {
+  background-color: red;
+  margin-top: 0px;
+}
+
 
 .App-logo {
   height: 40vmin;
