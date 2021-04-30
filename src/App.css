@@ -7,6 +7,7 @@
 
 .Todo-module {
   flex: 1;
+  border: solid black;
 }
 
 .Todo-heading {
@@ -17,11 +18,15 @@
 
 .TodoList {
   background-color: yellowgreen;
-  margin-top: 0px;
+  border: 5px solid darkgray;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 2px;
 }
 
 .Todont-module {
   flex: 1;
+  border: solid black;
 }
 
 .Todont-heading {
@@ -35,6 +40,17 @@
   margin-top: 0px;
 }
 
+/*Trying to get form input and btn centered */
+form {
+  display: flex;
+  background: chocolate;
+  align-content: space-around;
+}
+
+button {
+  font-family: monospace;
+  font-weight: bold;
+}
 
 .App-logo {
   height: 40vmin;

@@ -5,7 +5,7 @@ import React from 'react'
 export default function App() {
   const [todos, setTodos] = React.useState([
     { id:1, text:'Practice guitar', done:false },
-    { id:2, text:'Read book', done: false },
+    { id:2, text:'Read book', done: true },
     { id:3, text:'Cook dinner', done: false }
   ])
   const [todonts, setTodont] = React.useState([
@@ -30,11 +30,12 @@ export default function App() {
 }
 
 function AddToDo( {setTodos} ) {
+  const inputRef = React.useRef()
   function handleAddTodo(event) {
     //by default, the React refreshes page w/onSubmit - this prevents that
     event.preventDefault()
-    //see all the elements submitted by onSubmit - console.log(event.target.elements)
-    //get the text entered into <input> - console.log(event.target.elements.newTodo.value)
+    //to see all the elements submitted by onSubmit - console.log(event.target.elements)
+    //to get the text entered into <input> - console.log(event.target.elements.newTodo.value)
     const todoText = event.target.elements.newTodo.value
     const todo = {
       id: 4,
@@ -44,12 +45,15 @@ function AddToDo( {setTodos} ) {
     setTodos(prevTodos => {
       return prevTodos.concat(todo)
     })
-    console.log(todo)
+    inputRef.current.value = ''
   }
   return(
     <form onSubmit={handleAddTodo}>
       <input 
+        //* Name to use in handleAddTodo *//
         name="newTodo" 
+        //* Ref to use to clear input *//
+        ref={inputRef}
         placeholder="Add your todos here">
         </input>
       <button 
@@ -59,17 +63,21 @@ function AddToDo( {setTodos} ) {
   )
 }
 
+//! With destructuring to reduce typing "props" for properties
 function ToDoList( {todos}) {
   return (
     <ul className="TodoList">
       {todos.map(todo => (
-        <li key={todo.id}>Todo: {todo.text}</li>
+        <li
+          style={{textDecoration: todo.done ? "line-through" : "underline"}} 
+          key={todo.id}>Todo: {todo.text}</li>
       ))}
     </ul>
   )
 }
 
 function AddToDont( {setTodont} ) {
+  const inputRef = React.useRef()
   function handleAddTodont(event) {
     event.preventDefault()
     const todontText = event.target.elements.newTodont.value
@@ -81,11 +89,13 @@ function AddToDont( {setTodont} ) {
     setTodont(prevTodont => {
       return prevTodont.concat(todont)
     })
+    inputRef.current.value = ''
   }
   return(
     <form onSubmit={handleAddTodont}>
       <input 
-        name="newTodont" 
+        name="newTodont"
+        ref={inputRef}
         placeholder="Add your unproductive tasks here">
         </input>
       <button 
