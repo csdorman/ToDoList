@@ -38,7 +38,7 @@ function AddToDo( {setTodos} ) {
     //to get the text entered into <input> - console.log(event.target.elements.newTodo.value)
     const todoText = event.target.elements.newTodo.value
     const todo = {
-      id: 4,
+      id: Math.random(),
       text: todoText,
       done: false 
     }
@@ -54,23 +54,37 @@ function AddToDo( {setTodos} ) {
         name="newTodo" 
         //* Ref to use to clear input *//
         ref={inputRef}
-        placeholder="Add your todos here">
-        </input>
+        placeholder="Add your todos here"></input>
       <button 
-        type="submit">Add a ToDo
-        </button>
+        type="submit">Add a ToDo</button>
     </form>
   )
 }
 
 //! With destructuring to reduce typing "props" for properties
-function ToDoList( {todos}) {
+function ToDoList( {todos, setTodos} ) {
+  function handleToggleTodo(todo) {
+    const updatedTodos = todos.map((t) =>
+      t.id === todo.id 
+        ? {
+            ...t, 
+            done: !t.done
+          } 
+        : t
+      )
+      console.log(setTodos())
+    setTodos(updatedTodos)
+    }
   return (
     <ul className="TodoList">
-      {todos.map(todo => (
+      {todos.map((todo) => (
         <li
+          onClick= {() => handleToggleTodo(todo)}
           style={{textDecoration: todo.done ? "line-through" : "underline"}} 
-          key={todo.id}>Todo: {todo.text}</li>
+          key={todo.id}>
+          Todo: {todo.text}
+          <DeleteTodo todo={todo} setTodos={setTodos} />
+          </li>
       ))}
     </ul>
   )
@@ -101,6 +115,17 @@ function AddToDont( {setTodont} ) {
       <button 
         type="submit">Add something to AVOID</button>
     </form>
+  )
+}
+
+function DeleteTodo() {
+  return (
+    <span role="button"
+      style= {{
+        color: 'red'
+      }}
+      >x
+      </span>
   )
 }
 
