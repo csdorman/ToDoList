@@ -80,7 +80,7 @@ function ToDoList( { todos, setTodos } ) {
       {todos.map((todo) => (
         <li
           onClick= {() => handleToggleTodo(todo)}
-          style={{textDecoration: todo.done ? "line-through" : "underline"}} 
+          style={{textDecoration: todo.done ? "line-through" : "none"}} 
           key={todo.id}>
           Todo: {todo.text}
           <DeleteTodo todo={todo} setTodos={setTodos} />
@@ -120,9 +120,14 @@ function AddToDont( {setTodont} ) {
 
 function DeleteTodo() {
   return (
+    //! To get non-btn to function as button, must add "role=button" to html
     <span role="button"
       style= {{
-        color: 'red'
+        color: 'red',
+        fontWeight: 'bold',
+        fontSize: 18,
+        marginLeft: 10,
+        textDecoration: 'none'
       }}
       >x
       </span>

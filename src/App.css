@@ -11,17 +11,22 @@
 }
 
 .Todo-heading {
-  background: yellow;
+  background: floralwhite;
+  padding-top: 20px;
+  padding-bottom: 20px;
   margin-bottom: 0px;
+  margin-top: 0px;
   text-align: center;
 }
 
 .TodoList {
-  background-color: yellowgreen;
-  border: 5px solid darkgray;
+  background-color: lightgray;
+  border: 5px solid grey;
   padding-top: 5px;
   padding-bottom: 5px;
   margin: 2px;
+  text-align: center;
+  list-style-position: inside;
 }
 
 .Todont-module {
@@ -31,7 +36,8 @@
 
 .Todont-heading {
   background-color: tomato;
-  margin-bottom: 0px;
+  margin-top: 10px;
+  margin-bottom:10px;
   text-align: center;
 }
 
