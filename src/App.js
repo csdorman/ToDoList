@@ -17,7 +17,7 @@ export default function App() {
     <div className="App">
       <div className="Todo-module">
         <h1 className="Todo-heading">ToDo List</h1>
-          <ToDoList  todos={todos}/>
+          <ToDoList  setTodos={setTodos} todos={todos}/>
           <AddToDo setTodos={setTodos} />
       </div>
       <div className="Todont-module">
@@ -29,7 +29,7 @@ export default function App() {
   );
 }
 
-function AddToDo( {setTodos} ) {
+function AddToDo( { setTodos } ) {
   const inputRef = React.useRef()
   function handleAddTodo(event) {
     //by default, the React refreshes page w/onSubmit - this prevents that
@@ -62,7 +62,7 @@ function AddToDo( {setTodos} ) {
 }
 
 //! With destructuring to reduce typing "props" for properties
-function ToDoList( {todos, setTodos} ) {
+function ToDoList( { todos, setTodos } ) {
   function handleToggleTodo(todo) {
     const updatedTodos = todos.map((t) =>
       t.id === todo.id 
@@ -71,8 +71,8 @@ function ToDoList( {todos, setTodos} ) {
             done: !t.done
           } 
         : t
-      )
-      console.log(setTodos())
+    )
+    //console.log(setTodos())
     setTodos(updatedTodos)
     }
   return (
