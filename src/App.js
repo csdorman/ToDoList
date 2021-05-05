@@ -5,7 +5,7 @@ import React from 'react'
 export default function App() {
   const [todos, setTodos] = React.useState([
     { id:1, text:'Practice guitar', done:false },
-    { id:2, text:'Read book', done: true },
+    { id:2, text:'Read book', done: false },
     { id:3, text:'Cook dinner', done: false }
   ])
   const [todonts, setTodont] = React.useState([
@@ -61,6 +61,33 @@ function AddToDo( { setTodos } ) {
   )
 }
 
+function DeleteTodo( {todo, setTodos}) {
+  function handleDeleteTodo() {
+    const confirmed = window.confirm("Are you sure you want to delete this?")
+      if (confirmed) {
+        setTodos((prevTodos) => {
+          console.log(prevTodos.filter((t) => t.id !== todo.id))
+          return prevTodos.filter((t) => t.id !== todo.id)
+        })
+      }
+  }
+  return (
+    //! To get non-btn to function as button, must add "role=button" to html
+    <span 
+      role="button"
+      onClick={handleDeleteTodo}
+      style= {{
+        color: 'red',
+        fontWeight: 'bold',
+        fontSize: 18,
+        marginLeft: 10,
+        textDecoration: 'none',
+        cursor: "pointer"
+      }}
+      >x
+      </span>
+  )
+}
 //! With destructuring to reduce typing "props" for properties
 function ToDoList( { todos, setTodos } ) {
   function handleToggleTodo(todo) {
@@ -74,7 +101,10 @@ function ToDoList( { todos, setTodos } ) {
     )
     //console.log(setTodos())
     setTodos(updatedTodos)
-    }
+  }
+  if (!todos.length) {
+    return <p>Nothing left to do!</p>
+  }
   return (
     <ul className="TodoList">
       {todos.map((todo) => (
@@ -118,21 +148,7 @@ function AddToDont( {setTodont} ) {
   )
 }
 
-function DeleteTodo() {
-  return (
-    //! To get non-btn to function as button, must add "role=button" to html
-    <span role="button"
-      style= {{
-        color: 'red',
-        fontWeight: 'bold',
-        fontSize: 18,
-        marginLeft: 10,
-        textDecoration: 'none'
-      }}
-      >x
-      </span>
-  )
-}
+
 
 //! With destructuring to reduce typing "props" for properties
 function ToDontList( {todonts} ) {
