@@ -9,9 +9,9 @@ export default function App() {
     { id:3, text:'Cook dinner', done: false }
   ])
   const [todonts, setTodont] = React.useState([
-    { id:1, text:'Check social media', done:false },
-    { id:2, text:'Stay up too late', done:false },
-    { id:3, text:'Eat all the carbs', done:false }
+    { id:4, text:'Check social media', done:false },
+    { id:5, text:'Stay up too late', done:false },
+    { id:6, text:'Eat all the carbs', done:false }
   ])
   return (
     <div className="App">
@@ -109,7 +109,7 @@ function ToDoList( { todos, setTodos } ) {
     <ul className="TodoList">
       {todos.map((todo) => (
         <li
-          onClick= {() => handleToggleTodo(todo)}
+          onDoubleClick= {() => handleToggleTodo(todo)}
           style={{textDecoration: todo.done ? "line-through" : "none"}} 
           key={todo.id}>
           Todo: {todo.text}
