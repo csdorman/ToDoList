@@ -8,7 +8,7 @@ export default function App() {
     { id:2, text:'Read book', done: false },
     { id:3, text:'Cook dinner', done: false }
   ])
-  const [todonts, setTodont] = React.useState([
+  const [todonts, setTodonts] = React.useState([
     { id:4, text:'Check social media', done:false },
     { id:5, text:'Stay up too late', done:false },
     { id:6, text:'Eat all the carbs', done:false }
@@ -22,8 +22,8 @@ export default function App() {
       </div>
       <div className="Todont-module">
         <h1 className="Todont-heading">ToDon't List</h1>
-          <ToDontList  todonts={todonts} />
-          <AddToDont setTodont={setTodont} />
+          <ToDontList  setTodonts={setTodonts} todonts={todonts} />
+          <AddToDont setTodonts={setTodonts} />
       </div>
     </div>
   );
@@ -120,18 +120,18 @@ function ToDoList( { todos, setTodos } ) {
   )
 }
 
-function AddToDont( {setTodont} ) {
+function AddToDont( {setTodonts} ) {
   const inputRef = React.useRef()
   function handleAddTodont(event) {
     event.preventDefault()
     const todontText = event.target.elements.newTodont.value
     const todont = {
-      id: 4,
+      id: Math.random(),
       text: todontText,
       done: false
     }
-    setTodont(prevTodont => {
-      return prevTodont.concat(todont)
+    setTodonts(prevTodonts => {
+      return prevTodonts.concat(todont)
     })
     inputRef.current.value = ''
   }
@@ -148,17 +148,60 @@ function AddToDont( {setTodont} ) {
   )
 }
 
-
-
+function DeleteTodont( {todont, setTodonts }) {
+  function handleDeleteTodont() {
+    const confirmed = window.confirm("Don't do it!")
+    if (confirmed) {
+      setTodonts((prevTodonts) => {
+        console.log(prevTodonts.filter((t => t.id !== todont.id)))
+        return prevTodonts.filter((t) => t.id !== todont.id)
+      })
+    }
+  }
+  return (
+    <span
+      role="button"
+      onClick={handleDeleteTodont}
+      style= {{
+        color: 'black',
+        fontWeight: 'bold',
+        fontSize: 18,
+        marginLeft: 10,
+        textDecoration: 'none',
+        cursor: "pointer"
+      }}
+      >x
+      </span>
+  )
+}
 //! With destructuring to reduce typing "props" for properties
-function ToDontList( {todonts} ) {
+function ToDontList( {todonts, setTodonts } ) {
+  function handleToggleTodont(todont) {
+    const updatedTodonts = todonts.map((t) => 
+      t.id === todont.id
+        ? {
+            ...t,
+            done: !t.done
+          }
+        : t
+    )
+    setTodonts(updatedTodonts)        
+  }
   return (
     <ul className="TodontList">
-      {todonts.map(todont => (
-        <li key={todont.id}>ToDon't: {todont.text}</li>
+      {todonts.map((todont) => (
+        <li
+          onDoubleClick= {() => handleToggleTodont(todont)}
+          style={{textDecoration: todont.done ? 
+            "line-through"  : "none"}} 
+          key={todont.id}>
+        ToDon't: {todont.text}
+        <DeleteTodont todont={todont} setTodonts={setTodonts} />
+        </li>
       ))}
     </ul>
   )
 }
+
 
 
