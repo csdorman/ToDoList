@@ -84,7 +84,7 @@ function DeleteTodo( {todo, setTodos}) {
         textDecoration: 'none',
         cursor: "pointer"
       }}
-      >x
+      >X DEL
       </span>
   )
 }
@@ -170,7 +170,7 @@ function DeleteTodont( {todont, setTodonts }) {
         textDecoration: 'none',
         cursor: "pointer"
       }}
-      >x
+      >X DEL
       </span>
   )
 }

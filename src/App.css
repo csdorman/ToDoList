@@ -1,17 +1,29 @@
+@media screen 
+  and (max-width: 600px) {
+    .App {
+      flex-direction: column;
+    }
+  }
+
 .App {
   text-align: left;
-  padding: 2vh;
-  border:2px brown;
+  padding: 2vh 2vw;
+  margin: 1vh 1vw;
+  border: 1px solid black;
+  border-radius: 20px;
   display: flex;
+  background-color: rgba(128, 128, 128, 0.212);
 }
 
 .Todo-module {
   flex: 1;
-  border: solid black;
+  border: solid 1px black;
+  border-radius: 20px;
+  margin: 1vh 1vw;
+  padding: 0px;
 }
 
 .Todo-heading {
-  background: floralwhite;
   padding-top: 20px;
   padding-bottom: 20px;
   margin-bottom: 0px;
@@ -21,36 +33,47 @@
 
 .TodoList {
   background-color: lightgray;
-  border: 5px solid grey;
   padding-top: 5px;
   padding-bottom: 5px;
   margin: 2px;
-  text-align: center;
+  text-align:center;
   list-style-position: inside;
+  list-style-type:circle
 }
 
 .Todont-module {
   flex: 1;
-  border: solid black;
+  border: 1px solid black;
+  border-radius: 20px;
+  margin: 1vh 1vw;
 }
 
 .Todont-heading {
-  background-color: tomato;
-  margin-top: 10px;
-  margin-bottom:10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 0px;
+  margin-top: 0px;
   text-align: center;
 }
 
 .TodontList {
-  background-color: red;
-  margin-top: 0px;
+  background-color: rgba(255, 99, 71, 0.87);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 2px;
+  text-align:center;
+  list-style-position: inside;
+  list-style-type:circle
 }
 
 /*Trying to get form input and btn centered */
+
 form {
   display: flex;
   background: chocolate;
-  align-content: space-around;
+  border: 1px solid black;
+  border-radius: 0 0 20px 20px;
+  justify-content:center;
 }
 
 button {
